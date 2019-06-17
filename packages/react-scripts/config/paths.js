@@ -33,6 +33,13 @@ function ensureSlash(inputPath, needsSlash) {
 const getPublicUrl = appPackageJson =>
   envPublicUrl || require(appPackageJson).homepage;
 
+const getFileName = appPackageJson => require(appPackageJson).filename;
+const getFileChunkName = appPackageJson =>
+  require(appPackageJson).fileChunkname;
+const getMediaName = appPackageJson => require(appPackageJson).medianame;
+const getCssName = appPackageJson => require(appPackageJson).cssname;
+const getCssChunkName = appPackageJson => require(appPackageJson).cssChunkname;
+
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
 // Webpack needs to know it to put the right <script> hrefs into HTML even in
@@ -90,6 +97,11 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
+  filename: getFileName(resolveApp('package.json')),
+  fileChunkname: getFileChunkName(resolveApp('package.json')),
+  medianame: getMediaName(resolveApp('package.json')),
+  cssname: getCssName(resolveApp('package.json')),
+  cssChunkname: getCssChunkName(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
 };
 
@@ -113,6 +125,11 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
+  filename: getFileName(resolveApp('package.json')),
+  fileChunkname: getFileChunkName(resolveApp('package.json')),
+  medianame: getMediaName(resolveApp('package.json')),
+  cssname: getCssName(resolveApp('package.json')),
+  cssChunkname: getCssChunkName(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
@@ -148,6 +165,11 @@ if (
     proxySetup: resolveOwn('template/src/setupProxy.js'),
     appNodeModules: resolveOwn('node_modules'),
     publicUrl: getPublicUrl(resolveOwn('package.json')),
+    filename: getFileName(resolveApp('package.json')),
+    fileChunkname: getFileChunkName(resolveApp('package.json')),
+    medianame: getMediaName(resolveApp('package.json')),
+    cssname: getCssName(resolveApp('package.json')),
+    cssChunkname: getCssChunkName(resolveApp('package.json')),
     servedPath: getServedPath(resolveOwn('package.json')),
     // These properties only exist before ejecting:
     ownPath: resolveOwn('.'),
